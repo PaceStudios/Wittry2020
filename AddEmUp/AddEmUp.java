@@ -14,7 +14,7 @@ public class AddEmUp
      *    
      *    i.e., number[m].length = number[n].length, 0 <= m,n < number.length
      */
-    private int[][] numbers;
+    private static int[][] numbers;
 
     public AddEmUp(int[][] num)
     {
@@ -26,28 +26,21 @@ public class AddEmUp
      *    
      *    The returned List<Integer> should have no repeated values
      */
-    public List<Integer> rowSum(int row)
+    public static List<Integer> rowSum(int row)
     {
         List<Integer> ans = new ArrayList<Integer>();
+        int sum = 0;
 
-        if ( numbers[0][0] == 3)
-        {
-            if ( numbers[0][1] == 6)
-            {
-                ans.add(new Integer(9));
-                ans.add(new Integer(11));
-                ans.add(new Integer(14));
-                return ans;
+        for(int i = 0; i < numbers[row].length-1; i++){
+
+            for(int a = i+1; a < numbers[row].length; a++){ 
+                ans.add(new Integer(numbers[row][a]) + numbers[row][i]);
             }
-            if ( numbers[0][1] == -1)
-            {
-                ans.add(new Integer(2));
-                ans.add(new Integer(6));
-                return ans;
-            }
+
         }
+        LinkedHashSet<Integer> setNote = new LinkedHashSet<>(ans);
 
-        return null;
+        return new ArrayList<Integer>(setNote); 
     }
 
     /*
@@ -55,28 +48,26 @@ public class AddEmUp
      *  (For this method, repeated sums count multiple times.)
      *  Remember, a number, x, is even if x % 2 == 0.
      *  This method returns:
-     *    “EVEN” if there exist more even numbers in the List of all possible sum of two entries in a given row.
-     *    “ODD” if there exist more odd numbers in the List of all possible sum of two entries in a given row.
-     *    “NEITHER” if there exist the same number of even and odd numbers in the List of all possible sum of two entries in a given row.
+     *    ï¿½EVENï¿½ if there exist more even numbers in the List of all possible sum of two entries in a given row.
+     *    ï¿½ODDï¿½ if there exist more odd numbers in the List of all possible sum of two entries in a given row.
+     *    ï¿½NEITHERï¿½ if there exist the same number of even and odd numbers in the List of all possible sum of two entries in a given row.
      */
-    public String getState(int row)
+    public static String getState(int row)
     {
-        //      { 3, 6, 8}, {2, 12, 7}, {8, 6, 4}};
-        if ( numbers[0][0] == 3)
-        {
-            if ( numbers[0][1] == 6)
+        int oddCount = 0;
+        int evenCount = 0;
+        String resp = "";
+        for(int i = 0; i < numbers[row].length; i++){
+            int temp = numbers[row][i];
+            if (temp %2 == 0){
+                evenCount++;}
+            else
             {
-                if (row == 0) return "ODD";
-                if (row == 1) return "ODD";
-                if (row == 2) return "EVEN";
-            }
-            if ( numbers[0][1] == -1)
-            {
-                if (row == 0) return "EVEN";
-                if (row == 1) return "ODD";
-            }
+                oddCount++;}
         }
-        return null;
+        if (oddCount > evenCount)
+            return "ODD";
+        return "EVEN";    
     }
 
     /*
@@ -85,15 +76,20 @@ public class AddEmUp
      *
      *   That is, a List of all values that would be contain in the rowSum(k) method for all possible values of k.
      */
-    public List<Integer> commonSum()
+    public static List<Integer> commonSum()
     {
-        //      { 3, 6, 8}, {2, 12, 7}, {8, 6, 4}};
-        if ( numbers[0][0] == 3)
-        {
-            List<Integer> ans = new ArrayList<Integer>();
-            ans.add(new Integer(14));
-            return ans;
+        List<Integer> commonvalues = new ArrayList<Integer>();
+        List<Integer> compare = new ArrayList<Integer>();
+        compare = rowSum(0);
+        for(int i = 1; i < numbers[0].length; i++){
+            List<Integer> temp = rowSum(i);
+            System.out.println(commonvalues);
+            System.out.println(temp);
+            System.out.println("|| Checks for Common Values ||");
+            System.out.println("Common Values found: " + commonvalues);
+            commonvalues.retainAll(temp);
+
         }
-        return null;
+        return compare;
     }
 }

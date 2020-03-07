@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=num
+comment0.target=AddEmUp(int[][])
+comment1.params=row
+comment1.target=java.util.List\ rowSum(int)
+comment1.text=\r\n\ \ \ \ returns\ a\ list\ of\ all\ possible\ sums\ using\ two\ entries\ from\ the\ given\ row.\r\n\ \ \ \ \r\n\ \ \ \ The\ returned\ List<Integer>\ should\ have\ no\ repeated\ values\r\n
+comment2.params=row
+comment2.target=java.lang.String\ getState(int)
+comment2.text=\r\n\ \ determines\ the\ state\ of\ row\ in\ the\ 2D\ array.\r\n\ \ (For\ this\ method,\ repeated\ sums\ count\ multiple\ times.)\r\n\ \ Remember,\ a\ number,\ x,\ is\ even\ if\ x\ %\ 2\ \=\=\ 0.\r\n\ \ This\ method\ returns\:\r\n\ \ \ \ \uFFFDEVEN\uFFFD\ if\ there\ exist\ more\ even\ numbers\ in\ the\ List\ of\ all\ possible\ sum\ of\ two\ entries\ in\ a\ given\ row.\r\n\ \ \ \ \uFFFDODD\uFFFD\ if\ there\ exist\ more\ odd\ numbers\ in\ the\ List\ of\ all\ possible\ sum\ of\ two\ entries\ in\ a\ given\ row.\r\n\ \ \ \ \uFFFDNEITHER\uFFFD\ if\ there\ exist\ the\ same\ number\ of\ even\ and\ odd\ numbers\ in\ the\ List\ of\ all\ possible\ sum\ of\ two\ entries\ in\ a\ given\ row.\r\n
+comment3.params=
+comment3.target=java.util.List\ commonSum()
+comment3.text=\r\n\ \ \ returns\ a\ List\ of\ all\ values\ that\ are\ contained\ in\ every\ List\ returned\ by\ rowSum(k)\ method,\ 0\ <\=\ k\ <\ numbers.length\ \r\n\ \ \ for\ all\ rows\ in\ the\ 2D\ array.\r\n\r\n\ \ \ That\ is,\ a\ List\ of\ all\ values\ that\ would\ be\ contain\ in\ the\ rowSum(k)\ method\ for\ all\ possible\ values\ of\ k.\r\n
+numComments=4
