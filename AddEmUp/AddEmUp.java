@@ -102,16 +102,6 @@ public class AddEmUp
         }
         System.out.println("Mega List" + megaList);
         commonvalues = findDuplicates(megaList);
-        /*
-        for(int i = 0; i < megaList.size();i++){
-        int temp = megaList.get(i);
-        System.out.println("Comparison Element: " + temp);
-        for(int a = i; a < megaList.size(); a++){
-        if(temp == megaList.get(a)){
-        System.out.println("Active Comparison" + megaList.get(a));
-        commonvalues.add(a);}}
-        }
-         */
         return commonvalues;
     }
 
