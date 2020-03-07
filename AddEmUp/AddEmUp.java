@@ -14,7 +14,7 @@ public class AddEmUp
      *    
      *    i.e., number[m].length = number[n].length, 0 <= m,n < number.length
      */
-    private static int[][] numbers;
+    private int[][] numbers;
 
     public AddEmUp(int[][] num)
     {
@@ -26,7 +26,7 @@ public class AddEmUp
      *    
      *    The returned List<Integer> should have no repeated values
      */
-    public static List<Integer> rowSum(int row)
+    public List<Integer> rowSum(int row)
     {
         List<Integer> ans = new ArrayList<Integer>();
         int sum = 0;
@@ -52,22 +52,33 @@ public class AddEmUp
      *    �ODD� if there exist more odd numbers in the List of all possible sum of two entries in a given row.
      *    �NEITHER� if there exist the same number of even and odd numbers in the List of all possible sum of two entries in a given row.
      */
-    public static String getState(int row)
+    public String getState(int row)
     {
         int oddCount = 0;
         int evenCount = 0;
         String resp = "";
-        for(int i = 0; i < numbers[row].length; i++){
-            int temp = numbers[row][i];
+        List<Integer> totalrow = new ArrayList<Integer>();
+        totalrow = rowSum(row);
+        for(int i = 0; i < totalrow.size(); i++){
+            int temp = totalrow.get(i);
+            System.out.println("Current Temp:" + temp);
             if (temp %2 == 0){
+                System.out.println("Current Temp is Even");
                 evenCount++;}
             else
             {
+                System.out.println("Current Temp is Odd");
                 oddCount++;}
         }
-        if (oddCount > evenCount)
-            return "ODD";
-        return "EVEN";    
+        System.out.println("Even Count: " + evenCount);
+        System.out.println("Odd Count: " + oddCount);
+        if(evenCount > oddCount){
+            return "EVEN";}
+        else if(oddCount > evenCount){
+            return "ODD";}
+        else{
+            return "NEITHER";}
+
     }
 
     /*
@@ -76,20 +87,41 @@ public class AddEmUp
      *
      *   That is, a List of all values that would be contain in the rowSum(k) method for all possible values of k.
      */
-    public static List<Integer> commonSum()
+    public List<Integer> commonSum()
     {
+        System.out.println("" + Arrays.asList(numbers));    
         List<Integer> commonvalues = new ArrayList<Integer>();
-        List<Integer> compare = new ArrayList<Integer>();
-        compare = rowSum(0);
-        for(int i = 1; i < numbers[0].length; i++){
-            List<Integer> temp = rowSum(i);
-            System.out.println(commonvalues);
-            System.out.println(temp);
-            System.out.println("|| Checks for Common Values ||");
-            System.out.println("Common Values found: " + commonvalues);
-            commonvalues.retainAll(temp);
-
+        List<Integer> megaList = new ArrayList<Integer>();
+        for(int i = 0; i < numbers[0].length; i++){
+            List<Integer> tempList = rowSum(i);
+            System.out.println("Temp List" + tempList);
+            for(int a = 0; a < tempList.size(); a++){
+                megaList.add(tempList.get(a));
+                System.out.println("Individual Element: + " + tempList.get(a)); 
+            }
         }
-        return compare;
+        System.out.println("Mega List" + megaList);
+        commonvalues = findDuplicates(megaList);
+        /*
+        for(int i = 0; i < megaList.size();i++){
+        int temp = megaList.get(i);
+        System.out.println("Comparison Element: " + temp);
+        for(int a = i; a < megaList.size(); a++){
+        if(temp == megaList.get(a)){
+        System.out.println("Active Comparison" + megaList.get(a));
+        commonvalues.add(a);}}
+        }
+         */
+        return commonvalues;
     }
+
+    public List<Integer> findDuplicates(List<Integer> a){
+        List<Integer> found = new ArrayList<Integer>();
+        for(int i = 0; i < a.size(); i++){
+            int temp = a.get(i);
+            int freq = Collections.frequency(a, temp);
+            if((freq == numbers[0].length) && (found.contains(temp) == false))
+                found.add(temp);
+        }
+        return found;}
 }

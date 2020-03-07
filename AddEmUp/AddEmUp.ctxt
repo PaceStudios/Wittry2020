@@ -10,4 +10,6 @@ comment2.text=\r\n\ \ determines\ the\ state\ of\ row\ in\ the\ 2D\ array.\r\n\ 
 comment3.params=
 comment3.target=java.util.List\ commonSum()
 comment3.text=\r\n\ \ \ returns\ a\ List\ of\ all\ values\ that\ are\ contained\ in\ every\ List\ returned\ by\ rowSum(k)\ method,\ 0\ <\=\ k\ <\ numbers.length\ \r\n\ \ \ for\ all\ rows\ in\ the\ 2D\ array.\r\n\r\n\ \ \ That\ is,\ a\ List\ of\ all\ values\ that\ would\ be\ contain\ in\ the\ rowSum(k)\ method\ for\ all\ possible\ values\ of\ k.\r\n
-numComments=4
+comment4.params=a
+comment4.target=java.util.List\ findDuplicates(java.util.List)
+numComments=5
